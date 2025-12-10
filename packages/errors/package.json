@@ -1,0 +1,45 @@
+{
+  "name": "@cc/errors",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./validation": {
+      "import": "./dist/validation.errors.js",
+      "types": "./dist/validation.errors.d.ts"
+    },
+    "./http": {
+      "import": "./dist/http.errors.js",
+      "types": "./dist/http.errors.d.ts"
+    },
+    "./filesystem": {
+      "import": "./dist/filesystem.errors.js",
+      "types": "./dist/filesystem.errors.d.ts"
+    },
+    "./generic": {
+      "import": "./dist/generic.errors.js",
+      "types": "./dist/generic.errors.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "effect": "^3.18.0"
+  },
+  "devDependencies": {
+    "@effect/vitest": "^0.26.0",
+    "effect": "^3.18.4",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

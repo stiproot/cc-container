@@ -1,9 +1,21 @@
 /**
- * Schema Definitions using @effect/schema
+ * Domain-Specific Schema Definitions using @effect/schema
  * Following Effect-TS best practices for runtime validation
+ *
+ * Generic schemas are imported from @cc/schemas package
  */
 
 import { Schema } from '@effect/schema';
+
+// Re-export generic schemas from shared package for convenience
+export {
+  HealthCheckSchema,
+  type HealthCheck,
+  ApiErrorResponseSchema,
+  type ApiErrorResponse,
+  StreamEventSchema,
+  type StreamEvent,
+} from '@cc/schemas';
 
 /**
  * Task Status
@@ -153,63 +165,3 @@ export const MCPConfigSchema = Schema.Struct({
 });
 export type MCPConfig = typeof MCPConfigSchema.Type;
 
-/**
- * Health Check Schema
- */
-export const HealthCheckSchema = Schema.Struct({
-  status: Schema.Literal('ok', 'degraded', 'error'),
-  timestamp: Schema.DateTimeUtc,
-  version: Schema.String,
-  uptime: Schema.Number,
-  services: Schema.Record({
-    key: Schema.String,
-    value: Schema.Struct({
-      status: Schema.Literal('ok', 'error'),
-      message: Schema.optional(Schema.String),
-    }),
-  }),
-});
-export type HealthCheck = typeof HealthCheckSchema.Type;
-
-/**
- * API Error Response Schema
- */
-export const ApiErrorResponseSchema = Schema.Struct({
-  error: Schema.String,
-  message: Schema.String,
-  code: Schema.optional(Schema.String),
-  details: Schema.optional(Schema.Unknown),
-  timestamp: Schema.DateTimeUtc,
-});
-export type ApiErrorResponse = typeof ApiErrorResponseSchema.Type;
-
-/**
- * Stream Event Schema (for SSE)
- */
-export const StreamEventSchema = Schema.Union(
-  Schema.Struct({
-    type: Schema.Literal('connected'),
-    taskId: Schema.String,
-  }),
-  Schema.Struct({
-    type: Schema.Literal('progress'),
-    taskId: Schema.String,
-    message: Schema.String,
-  }),
-  Schema.Struct({
-    type: Schema.Literal('output'),
-    taskId: Schema.String,
-    content: Schema.String,
-  }),
-  Schema.Struct({
-    type: Schema.Literal('completed'),
-    taskId: Schema.String,
-    result: Schema.String,
-  }),
-  Schema.Struct({
-    type: Schema.Literal('error'),
-    taskId: Schema.String,
-    error: Schema.String,
-  })
-);
-export type StreamEvent = typeof StreamEventSchema.Type;

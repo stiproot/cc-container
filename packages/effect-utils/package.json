@@ -1,0 +1,45 @@
+{
+  "name": "@cc/effect-utils",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./retry": {
+      "import": "./dist/retry-policies.js",
+      "types": "./dist/retry-policies.d.ts"
+    },
+    "./timeout": {
+      "import": "./dist/timeout-utilities.js",
+      "types": "./dist/timeout-utilities.d.ts"
+    },
+    "./layer": {
+      "import": "./dist/layer-helpers.js",
+      "types": "./dist/layer-helpers.d.ts"
+    },
+    "./ref": {
+      "import": "./dist/ref-helpers.js",
+      "types": "./dist/ref-helpers.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "effect": "^3.18.0"
+  },
+  "devDependencies": {
+    "@effect/vitest": "^0.26.0",
+    "effect": "^3.18.4",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,9 +1,25 @@
 /**
- * Tagged Error Definitions
+ * Domain-Specific Tagged Error Definitions
  * Following Effect-TS best practices for type-safe error handling
+ *
+ * Generic errors are imported from @cc/errors package
  */
 
 import { Data } from 'effect';
+
+// Re-export generic errors from shared package for convenience
+export {
+  ValidationError,
+  SchemaValidationError,
+  HttpError,
+  UnauthorizedError,
+  ForbiddenError,
+  FileNotFoundError,
+  FileReadError,
+  FileWriteError,
+  UnknownError,
+  NotImplementedError,
+} from '@cc/errors';
 
 /**
  * Configuration Errors
@@ -99,63 +115,3 @@ export class MCPValidationError extends Data.TaggedError('MCPValidationError')<{
   readonly serverName: string;
 }> {}
 
-/**
- * Validation Errors
- */
-export class ValidationError extends Data.TaggedError('ValidationError')<{
-  readonly message: string;
-  readonly field?: string;
-  readonly value?: unknown;
-}> {}
-
-export class SchemaValidationError extends Data.TaggedError('SchemaValidationError')<{
-  readonly message: string;
-  readonly errors: readonly unknown[];
-}> {}
-
-/**
- * File System Errors
- */
-export class FileNotFoundError extends Data.TaggedError('FileNotFoundError')<{
-  readonly path: string;
-}> {}
-
-export class FileReadError extends Data.TaggedError('FileReadError')<{
-  readonly path: string;
-  readonly cause: unknown;
-}> {}
-
-export class FileWriteError extends Data.TaggedError('FileWriteError')<{
-  readonly path: string;
-  readonly cause: unknown;
-}> {}
-
-/**
- * HTTP/API Errors
- */
-export class HttpError extends Data.TaggedError('HttpError')<{
-  readonly statusCode: number;
-  readonly message: string;
-  readonly url?: string;
-}> {}
-
-export class UnauthorizedError extends Data.TaggedError('UnauthorizedError')<{
-  readonly message: string;
-}> {}
-
-export class ForbiddenError extends Data.TaggedError('ForbiddenError')<{
-  readonly message: string;
-  readonly resource?: string;
-}> {}
-
-/**
- * Generic Errors
- */
-export class UnknownError extends Data.TaggedError('UnknownError')<{
-  readonly message: string;
-  readonly cause: unknown;
-}> {}
-
-export class NotImplementedError extends Data.TaggedError('NotImplementedError')<{
-  readonly feature: string;
-}> {}

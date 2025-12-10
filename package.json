@@ -1,0 +1,42 @@
+{
+  "name": "cc-container",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "bun run build:packages && bun run build:apps",
+    "build:packages": "bun run --filter './packages/*' build",
+    "build:apps": "bun run --filter './apps/*' build",
+    "build:headless": "bun run --filter cc-headless-svc build",
+
+    "dev": "bun run --filter cc-headless-svc dev",
+    "dev:headless": "bun run --filter cc-headless-svc dev",
+
+    "start:headless": "bun run --filter cc-headless-svc start",
+    "start:headless:prod": "NODE_ENV=production bun run --filter cc-headless-svc start",
+
+    "test": "bun run --filter './packages/*' test && bun run --filter './apps/*' test",
+    "test:unit": "bun run --filter './packages/*' test && bun run --filter './apps/*' test:unit",
+    "test:integration": "bun run --filter './apps/*' test:integration",
+    "test:watch": "bun run --filter './packages/*' test:watch",
+    "test:coverage": "bun run test --coverage",
+
+    "type-check": "bun run --filter './packages/*' type-check && bun run --filter './apps/*' type-check",
+    "type-check:watch": "bun run type-check --watch",
+
+    "clean": "bun run clean:dist && bun run clean:deps",
+    "clean:dist": "rm -rf apps/*/dist packages/*/dist",
+    "clean:deps": "rm -rf node_modules apps/*/node_modules packages/*/node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "bun": ">=1.0.0"
+  }
+}

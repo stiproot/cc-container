@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "noEmit": true,
+    "composite": true
+  },
+  "references": [
+    { "path": "../../packages/config" },
+    { "path": "../../packages/errors" },
+    { "path": "../../packages/schemas" },
+    { "path": "../../packages/effect-utils" }
+  ],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}

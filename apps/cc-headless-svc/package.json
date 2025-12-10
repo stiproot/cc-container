@@ -25,6 +25,10 @@
   "license": "ISC",
   "description": "Containerized Claude Code CLI agent with MCP integration",
   "dependencies": {
+    "@cc/config": "workspace:*",
+    "@cc/errors": "workspace:*",
+    "@cc/schemas": "workspace:*",
+    "@cc/effect-utils": "workspace:*",
     "@effect/platform": "^0.92.1",
     "@effect/platform-node": "^0.98.3",
     "@effect/schema": "^0.75.5",

@@ -1,0 +1,19 @@
+[install]
+# Use exact versions for reproducible builds
+exact = true
+
+# Don't auto-install peer dependencies
+auto = false
+
+[install.cache]
+# Cache dependencies globally
+dir = "~/.bun/install/cache"
+
+[test]
+# Test configuration
+coverage = true
+coverageReporter = ["text", "json", "html"]
+
+[run]
+# Set NODE_ENV for run commands
+env = { NODE_ENV = "development" }

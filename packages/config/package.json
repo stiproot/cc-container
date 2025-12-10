@@ -1,0 +1,44 @@
+{
+  "name": "@cc/config",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./types": {
+      "import": "./dist/config-types.js",
+      "types": "./dist/config-types.d.ts"
+    },
+    "./validator": {
+      "import": "./dist/env-validator.js",
+      "types": "./dist/env-validator.d.ts"
+    },
+    "./base": {
+      "import": "./dist/base-config.service.js",
+      "types": "./dist/base-config.service.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@cc/errors": "workspace:*"
+  },
+  "peerDependencies": {
+    "effect": "^3.18.0"
+  },
+  "devDependencies": {
+    "@effect/vitest": "^0.26.0",
+    "effect": "^3.18.4",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

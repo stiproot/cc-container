@@ -1,0 +1,43 @@
+{
+  "name": "@cc/schemas",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./health-check": {
+      "import": "./dist/health-check.schema.js",
+      "types": "./dist/health-check.schema.d.ts"
+    },
+    "./api-response": {
+      "import": "./dist/api-response.schema.js",
+      "types": "./dist/api-response.schema.d.ts"
+    },
+    "./stream-event": {
+      "import": "./dist/stream-event.schema.js",
+      "types": "./dist/stream-event.schema.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "@effect/schema": "^0.75.0",
+    "effect": "^3.18.0"
+  },
+  "devDependencies": {
+    "@effect/schema": "^0.75.5",
+    "@effect/vitest": "^0.26.0",
+    "effect": "^3.18.4",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
